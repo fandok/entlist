@@ -2,13 +2,14 @@ package main
 
 import (
 	"flag"
-	"github.com/google/gops/agent"
 	"log"
 	"net/http"
 
+	"github.com/google/gops/agent"
+
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 
-	"github.com/tokopedia/gosample/hello"
+	"github.com/fandok/entlist/hello"
 	"github.com/tokopedia/logging/tracer"
 	"gopkg.in/tokopedia/grace.v1"
 	"gopkg.in/tokopedia/logging.v1"
