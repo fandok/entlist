@@ -10,6 +10,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 
 	"github.com/fandok/entlist/hello"
+	"github.com/fandok/entlist/movies"
 	"github.com/tokopedia/logging/tracer"
 	"gopkg.in/tokopedia/grace.v1"
 	"gopkg.in/tokopedia/logging.v1"
@@ -29,11 +30,13 @@ func main() {
 	}
 
 	hwm := hello.NewHelloWorldModule()
+	movies := movies.InitMovie()
 
 	http.Handle("/metrics", promhttp.Handler())
 
 	http.HandleFunc("/hello", hwm.SayHelloWorld)
-	go logging.StatsLog()
+	http.HandleFunc("/movies", movies.PrintMovies)
+	// go logging.StatsLog()
 
 	tracer.Init(&tracer.Config{Port: 8700, Enabled: true})
 
